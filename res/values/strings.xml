@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Common String Resources -->
     <string name="app_name">sCalc</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+
+    <!-- activity_scalc_activity strings -->
+
+    <string name="scalc_header_str">Simple Calculator</string>
+    <string name="scalc_result_str">0.0</string>
+    <string name="scalc_digit_0_button_str">0</string>
+    <string name="scalc_digit_1_button_str">1</string>
+    <string name="scalc_digit_2_button_str">2</string>
+    <string name="scalc_digit_3_button_str">3</string>
+    <string name="scalc_digit_4_button_str">4</string>
+    <string name="scalc_digit_5_button_str">5</string>
+    <string name="scalc_digit_6_button_str">6</string>
+    <string name="scalc_digit_7_button_str">7</string>
+    <string name="scalc_digit_8_button_str">8</string>
+    <string name="scalc_digit_9_button_str">9</string>
+    <string name="scalc_operator_add_button_str">+</string>
+    <string name="scalc_operator_sub_button_str">-</string>
+    <string name="scalc_operator_mul_button_str">*</string>
+    <string name="scalc_operator_div_button_str">/</string>
+    <string name="scalc_float_point_button_str">.</string>
+    <string name="scalc_operator_equal_button_str">=</string>
 
 </resources>

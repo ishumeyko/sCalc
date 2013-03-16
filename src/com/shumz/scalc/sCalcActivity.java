@@ -9,7 +9,7 @@ public class sCalcActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_scalc_activity);
+		setContentView(R.layout.activity_scalc_activity_4);
 	}
 
 //	@Override

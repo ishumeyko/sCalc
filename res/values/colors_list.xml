@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- activity_scalc_activity colors -->
+
+    <color name="scalc_color_header_str">#888888</color>
+    <color name="scalc_color_digits_background">#AADDAA</color>
+    <color name="scalc_color_background">#EEEEEE</color>
+    <color name="scalc_color_charger_background">#330033</color>
+    <color name="scalc_color_result_out_background">#DDDDDD</color>
+    <color name="scalc_color_digits_background_full">#000000</color>
+
+</resources>

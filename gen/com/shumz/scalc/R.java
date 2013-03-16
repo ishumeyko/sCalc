@@ -10,6 +10,16 @@ package com.shumz.scalc;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int scalc_color_background=0x7f050002;
+        public static final int scalc_color_charger_background=0x7f050003;
+        public static final int scalc_color_digits_background=0x7f050001;
+        public static final int scalc_color_digits_background_full=0x7f050005;
+        /**  activity_scalc_activity colors 
+         */
+        public static final int scalc_color_header_str=0x7f050000;
+        public static final int scalc_color_result_out_background=0x7f050004;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -17,53 +27,87 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int i_am_awesome_background=0x7f020000;
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f090017;
-        public static final int button1=0x7f090004;
-        public static final int button10=0x7f09000f;
-        public static final int button11=0x7f090010;
-        public static final int button12=0x7f090011;
-        public static final int button13=0x7f090013;
-        public static final int button14=0x7f090015;
-        public static final int button15=0x7f090014;
-        public static final int button16=0x7f090016;
-        public static final int button2=0x7f090005;
-        public static final int button3=0x7f090006;
-        public static final int button4=0x7f090007;
-        public static final int button5=0x7f090009;
-        public static final int button6=0x7f09000a;
-        public static final int button7=0x7f09000b;
-        public static final int button8=0x7f09000c;
-        public static final int button9=0x7f09000e;
-        public static final int tableRow1=0x7f090003;
-        public static final int tableRow2=0x7f090008;
-        public static final int tableRow3=0x7f09000d;
-        public static final int tableRow4=0x7f090012;
-        public static final int textView1=0x7f090000;
-        public static final int textView2=0x7f090001;
-        public static final int textView3=0x7f090002;
+        public static final int ButtonsableLayout=0x7f0a0001;
+        public static final int CommonLayout=0x7f0a0017;
+        public static final int RelativeLayout1=0x7f0a001a;
+        public static final int TableLayout1=0x7f0a001b;
+        public static final int action_settings=0x7f0a0020;
+        public static final int button1=0x7f0a0003;
+        public static final int button10=0x7f0a000e;
+        public static final int button11=0x7f0a000f;
+        public static final int button12=0x7f0a0010;
+        public static final int button13=0x7f0a0012;
+        public static final int button14=0x7f0a0014;
+        public static final int button15=0x7f0a0013;
+        public static final int button16=0x7f0a0015;
+        public static final int button17=0x7f0a001c;
+        public static final int button18=0x7f0a001d;
+        public static final int button2=0x7f0a0004;
+        public static final int button3=0x7f0a0005;
+        public static final int button4=0x7f0a0006;
+        public static final int button5=0x7f0a0008;
+        public static final int button6=0x7f0a0009;
+        public static final int button7=0x7f0a000a;
+        public static final int button8=0x7f0a000b;
+        public static final int button9=0x7f0a000d;
+        public static final int imageView1=0x7f0a0018;
+        public static final int imageView2=0x7f0a0019;
+        public static final int tableRow1=0x7f0a0002;
+        public static final int tableRow2=0x7f0a0007;
+        public static final int tableRow3=0x7f0a000c;
+        public static final int tableRow4=0x7f0a0011;
+        public static final int textView1=0x7f0a0000;
+        public static final int textView2=0x7f0a0016;
+        public static final int tvHeader=0x7f0a001e;
+        public static final int tvResult=0x7f0a001f;
     }
     public static final class layout {
         public static final int activity_scalc_activity=0x7f030000;
-        public static final int activity_splash=0x7f030001;
+        public static final int activity_scalc_activity_2=0x7f030001;
+        public static final int activity_scalc_activity_3=0x7f030002;
+        public static final int activity_scalc_activity_4=0x7f030003;
+        public static final int activity_splash=0x7f030004;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static final int main=0x7f090000;
     }
     public static final class raw {
         public static final int first_lightning_splash_sound_5sec=0x7f040000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
+        public static final int action_settings=0x7f070001;
+        /**  Common String Resources 
+         */
+        public static final int app_name=0x7f070000;
+        public static final int hello_world=0x7f070002;
+        public static final int scalc_digit_0_button_str=0x7f070005;
+        public static final int scalc_digit_1_button_str=0x7f070006;
+        public static final int scalc_digit_2_button_str=0x7f070007;
+        public static final int scalc_digit_3_button_str=0x7f070008;
+        public static final int scalc_digit_4_button_str=0x7f070009;
+        public static final int scalc_digit_5_button_str=0x7f07000a;
+        public static final int scalc_digit_6_button_str=0x7f07000b;
+        public static final int scalc_digit_7_button_str=0x7f07000c;
+        public static final int scalc_digit_8_button_str=0x7f07000d;
+        public static final int scalc_digit_9_button_str=0x7f07000e;
+        public static final int scalc_float_point_button_str=0x7f070013;
+        /**  activity_scalc_activity strings 
+         */
+        public static final int scalc_header_str=0x7f070003;
+        public static final int scalc_operator_add_button_str=0x7f07000f;
+        public static final int scalc_operator_div_button_str=0x7f070012;
+        public static final int scalc_operator_equal_button_str=0x7f070014;
+        public static final int scalc_operator_mul_button_str=0x7f070011;
+        public static final int scalc_operator_sub_button_str=0x7f070010;
+        public static final int scalc_result_str=0x7f070004;
     }
     public static final class style {
         /** 
@@ -87,10 +131,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }
