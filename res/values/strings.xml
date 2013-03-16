@@ -26,5 +26,7 @@
     <string name="scalc_operator_div_button_str">/</string>
     <string name="scalc_float_point_button_str">.</string>
     <string name="scalc_operator_equal_button_str">=</string>
+    <string name="scalc_clear_button_str">CE</string>
 
+    <string name="scalc_off_button_str">Off</string>
 </resources>

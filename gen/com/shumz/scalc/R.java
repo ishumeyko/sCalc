@@ -35,46 +35,38 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int ButtonsableLayout=0x7f0a0001;
-        public static final int CommonLayout=0x7f0a0017;
-        public static final int RelativeLayout1=0x7f0a001a;
-        public static final int TableLayout1=0x7f0a001b;
-        public static final int action_settings=0x7f0a0020;
-        public static final int button1=0x7f0a0003;
-        public static final int button10=0x7f0a000e;
-        public static final int button11=0x7f0a000f;
-        public static final int button12=0x7f0a0010;
-        public static final int button13=0x7f0a0012;
-        public static final int button14=0x7f0a0014;
-        public static final int button15=0x7f0a0013;
-        public static final int button16=0x7f0a0015;
-        public static final int button17=0x7f0a001c;
-        public static final int button18=0x7f0a001d;
-        public static final int button2=0x7f0a0004;
-        public static final int button3=0x7f0a0005;
-        public static final int button4=0x7f0a0006;
-        public static final int button5=0x7f0a0008;
-        public static final int button6=0x7f0a0009;
-        public static final int button7=0x7f0a000a;
-        public static final int button8=0x7f0a000b;
-        public static final int button9=0x7f0a000d;
-        public static final int imageView1=0x7f0a0018;
-        public static final int imageView2=0x7f0a0019;
-        public static final int tableRow1=0x7f0a0002;
-        public static final int tableRow2=0x7f0a0007;
-        public static final int tableRow3=0x7f0a000c;
-        public static final int tableRow4=0x7f0a0011;
-        public static final int textView1=0x7f0a0000;
-        public static final int textView2=0x7f0a0016;
-        public static final int tvHeader=0x7f0a001e;
-        public static final int tvResult=0x7f0a001f;
+        public static final int CommonLayout=0x7f0a0000;
+        public static final int ResultChildLayout=0x7f0a0003;
+        public static final int ResultParentLayout=0x7f0a0002;
+        public static final int action_settings=0x7f0a001b;
+        public static final int button1=0x7f0a0008;
+        public static final int button10=0x7f0a0018;
+        public static final int button11=0x7f0a000a;
+        public static final int button12=0x7f0a000f;
+        public static final int button13=0x7f0a0014;
+        public static final int button14=0x7f0a0019;
+        public static final int button15=0x7f0a000b;
+        public static final int button16=0x7f0a0010;
+        public static final int button17=0x7f0a0015;
+        public static final int button18=0x7f0a001a;
+        public static final int button2=0x7f0a000d;
+        public static final int button3=0x7f0a0012;
+        public static final int button4=0x7f0a0017;
+        public static final int button7=0x7f0a0009;
+        public static final int button8=0x7f0a000e;
+        public static final int button9=0x7f0a0013;
+        public static final int buttonClear=0x7f0a0005;
+        public static final int buttonOff=0x7f0a0006;
+        public static final int tableRow1=0x7f0a0007;
+        public static final int tableRow2=0x7f0a000c;
+        public static final int tableRow3=0x7f0a0011;
+        public static final int tableRow4=0x7f0a0016;
+        public static final int tvHeader=0x7f0a0001;
+        public static final int tvResult=0x7f0a0004;
     }
     public static final class layout {
         public static final int activity_scalc_activity=0x7f030000;
-        public static final int activity_scalc_activity_2=0x7f030001;
-        public static final int activity_scalc_activity_3=0x7f030002;
-        public static final int activity_scalc_activity_4=0x7f030003;
-        public static final int activity_splash=0x7f030004;
+        public static final int activity_splash=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -88,6 +80,7 @@ public final class R {
          */
         public static final int app_name=0x7f070000;
         public static final int hello_world=0x7f070002;
+        public static final int scalc_clear_button_str=0x7f070015;
         public static final int scalc_digit_0_button_str=0x7f070005;
         public static final int scalc_digit_1_button_str=0x7f070006;
         public static final int scalc_digit_2_button_str=0x7f070007;
@@ -102,6 +95,7 @@ public final class R {
         /**  activity_scalc_activity strings 
          */
         public static final int scalc_header_str=0x7f070003;
+        public static final int scalc_off_button_str=0x7f070016;
         public static final int scalc_operator_add_button_str=0x7f07000f;
         public static final int scalc_operator_div_button_str=0x7f070012;
         public static final int scalc_operator_equal_button_str=0x7f070014;
