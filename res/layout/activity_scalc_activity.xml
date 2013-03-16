@@ -51,6 +51,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/MainPanelLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/scalc_color_background"
@@ -76,6 +77,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/KeyBoardLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/scalc_color_digits_background"
@@ -84,143 +86,152 @@
         android:padding="25dp" >
 
         <LinearLayout
-            android:id="@+id/tableRow1"
-            android:layout_width="match_parent"
+            android:id="@+id/BorderLayout"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100" >
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:padding="7dp" >
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_7_button_str" />
+                android:weightSum="100" >
 
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="0dp"
+                <Button
+                    android:id="@+id/button_7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_7_button_str" />
+
+                <Button
+                    android:id="@+id/button_8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_8_button_str" />
+
+                <Button
+                    android:id="@+id/button_9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_9_button_str" />
+
+                <Button
+                    android:id="@+id/button_Div"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_operator_div_button_str" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_8_button_str" />
+                android:weightSum="100" >
 
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="0dp"
+                <Button
+                    android:id="@+id/button_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_4_button_str" />
+
+                <Button
+                    android:id="@+id/button_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_5_button_str" />
+
+                <Button
+                    android:id="@+id/button_6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_6_button_str" />
+
+                <Button
+                    android:id="@+id/button_Mul"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_operator_mul_button_str" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_9_button_str" />
+                android:weightSum="100" >
 
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="0dp"
+                <Button
+                    android:id="@+id/button_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_1_button_str" />
+
+                <Button
+                    android:id="@+id/button_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_2_button_str" />
+
+                <Button
+                    android:id="@+id/button_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_3_button_str" />
+
+                <Button
+                    android:id="@+id/button_Sub"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_operator_sub_button_str" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_operator_div_button_str" />
-        </LinearLayout>
+                android:weightSum="100" >
 
-        <LinearLayout
-            android:id="@+id/tableRow2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100" >
+                <Button
+                    android:id="@+id/button_0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_digit_0_button_str" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_4_button_str" />
+                <Button
+                    android:id="@+id/button_Eql"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_operator_equal_button_str" />
 
-            <Button
-                android:id="@+id/button8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_5_button_str" />
+                <Button
+                    android:id="@+id/button_Dot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_float_point_button_str" />
 
-            <Button
-                android:id="@+id/button12"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_6_button_str" />
-
-            <Button
-                android:id="@+id/button16"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_operator_mul_button_str" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tableRow3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100" >
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_1_button_str" />
-
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_2_button_str" />
-
-            <Button
-                android:id="@+id/button13"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_3_button_str" />
-
-            <Button
-                android:id="@+id/button17"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_operator_sub_button_str" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/tableRow4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100" >
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_digit_0_button_str" />
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_operator_equal_button_str" />
-
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_float_point_button_str" />
-
-            <Button
-                android:id="@+id/button18"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="@string/scalc_operator_add_button_str" />
+                <Button
+                    android:id="@+id/button_Add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:text="@string/scalc_operator_add_button_str" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

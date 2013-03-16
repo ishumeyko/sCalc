@@ -8,7 +8,7 @@
 
     <!-- activity_scalc_activity strings -->
 
-    <string name="scalc_header_str">Simple Calculator</string>
+    <string name="scalc_header_str">CITIZEN &#169;</string>
     <string name="scalc_result_str">0.0</string>
     <string name="scalc_digit_0_button_str">0</string>
     <string name="scalc_digit_1_button_str">1</string>
