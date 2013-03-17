@@ -26,6 +26,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	Boolean DotIsPressed = false;
 	Boolean EqualIsPressed = false;
+	
+	Boolean AddIsPressed = false;
+	Boolean SubIsPressed = false;
+	Boolean MulIsPressed = false;
+	Boolean DivIsPressed = false;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +51,9 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				tvResultString.setText("0");
-				resultString = "";
+				resultString = "0";
+				tvResultString.setText(resultString);
+
 				result = 0F;
 				operand_1 = 0F;
 				operand_2 = 0F;
@@ -84,14 +92,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Button_Floater = (Button) findViewById(R.id.button_Dot);
 		Button_Equal = (Button) findViewById(R.id.button_Eql);
 
-		Button_Add.setOnClickListener(this);
-		Button_Sub.setOnClickListener(this);
-		Button_Mul.setOnClickListener(this);
-		Button_Div.setOnClickListener(this);
+//		Button_Add.setOnClickListener(this);
+//		Button_Sub.setOnClickListener(this);
+//		Button_Mul.setOnClickListener(this);
+//		Button_Div.setOnClickListener(this);
 
-		Button_Add.setOnClickListener(this);
 		Button_Floater.setOnClickListener(this);
-		Button_Equal.setOnClickListener(this);
+//		Button_Equal.setOnClickListener(this);
 
 	}
 
@@ -172,10 +179,27 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			break;
 
-		// Checking if Equal button was pressed
-		case R.id.button_Eql:
-			EqualIsPressed = true;
-			break;
+//		// Checking if Equal button was pressed
+//		case R.id.button_Eql:
+//			EqualIsPressed = true;
+//			break;
+//
+//		// Checking if Equal button was pressed
+//		case R.id.button_Add:
+//			EqualIsPressed = true;
+//			break;
+//
+//		case R.id.button_Sub:
+//			EqualIsPressed = true;
+//			break;
+//
+//		case R.id.button_Mul:
+//			EqualIsPressed = true;
+//			break;
+//
+//		case R.id.button_Div:
+//			EqualIsPressed = true;
+//			break;		
 
 		default:
 			chr = 'Z';
@@ -184,11 +208,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 		getInputFromDigitalKeyboard(chr);
 
-		if (EqualIsPressed) {
-			EqualIsPressed = false;
-			strToFormat = formatInputString(resultString);
-			resultString = strToFormat;
-		}
+//		if (EqualIsPressed) {
+//			EqualIsPressed = false;
+//			strToFormat = formatInputString(resultString);
+//			resultString = strToFormat;
+//		}
 
 		tvResultString.setText(resultString);
 	}
@@ -252,12 +276,12 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				}// End of: if (!DotIsPressed)
 
-			} // End of: if (chr != 'Z')
+			} // End of: if (chr_inner != 'Z')
 
 		} // End of: if (resultString.length() < 13)
 
 	}
-
+	
 }
 
 // @Override
