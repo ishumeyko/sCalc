@@ -124,7 +124,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		char chr = 'Z';
+
 		switch (v.getId()) {
+
+		// switching between digital buttons
 		case R.id.button_0:
 			chr = '0';
 			break;
@@ -169,46 +172,65 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			break;
 
+		// Checking if Equal button was pressed
+		case R.id.button_Eql:
+			EqualIsPressed = true;
+			break;
+
 		default:
+			chr = 'Z';
 			break;
 		}
 
+		getInputFromDigitalKeyboard(chr);
+		tvResultString.setText(resultString);
+
+	}
+
+	/**
+	 * @param chr
+	 * @return 
+	 */
+	//This method will get input from string
+	private void getInputFromDigitalKeyboard(char chr_inner) {
+		
+		
 		if (resultString.length() < 13) {
 
-			if (chr != 'Z') {
-
-				if ((chr == '0') && (resultString.equals("0"))) {
-					chr = 'Z';
+			// Checking if first digit is '0'
+			if (chr_inner != 'Z') {
+				if ((chr_inner == '0') && (resultString.equals("0"))) {
+					chr_inner = 'Z';
 					resultString = "0";
-				} else
-				if ((chr != '0') && (resultString.equals("0")) && (chr !='.')) {
-					resultString = Character.toString(chr);
-					chr = 'Z';
+				} else if ((chr_inner != '0') && (resultString.equals("0"))
+						&& (chr_inner != '.')) {
+					resultString = Character.toString(chr_inner);
+					chr_inner = 'Z';
 				}
 			}
 
-			if (chr != 'Z') {
+			// Adding digits to a resultString one by one
+			if (chr_inner != 'Z') {
 
 				if (!DotIsPressed) {
-					if (chr == '.') {
+					if (chr_inner == '.') {
 						DotIsPressed = true;
 					}
-					resultString = resultString + chr;
+					resultString = resultString + chr_inner;
 					if (resultString.startsWith(".")) {
 						resultString = "0.";
 					}
 				} else {
-					if (chr != '.') {
-						resultString = resultString + chr;
+					if (chr_inner != '.') {
+						resultString = resultString + chr_inner;
 					}
 
 				}// End of: if (!DotIsPressed)
 
 			} // End of: if (chr != 'Z')
 
-			tvResultString.setText(resultString);
-
 		} // End of: if (resultString.length() < 13)
+		
 	}
 
 }
