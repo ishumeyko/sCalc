@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.app.Activity;
 
-public class sCalcActivity extends Activity {
+public class sCalcActivity extends Activity implements OnClickListener {
 
 	// Declaring Elements of Activity...
 
@@ -67,7 +67,6 @@ public class sCalcActivity extends Activity {
 		OffButton = (Button) findViewById(R.id.buttonOff);
 		ClearButton = (Button) findViewById(R.id.buttonClear);
 		resultString = (TextView) findViewById(R.id.tvResult);
-
 	}
 
 	private void initializeFuncKeys() {
@@ -79,7 +78,6 @@ public class sCalcActivity extends Activity {
 		Button_Div = (Button) findViewById(R.id.button_Div);
 		Button_Floater = (Button) findViewById(R.id.button_Dot);
 		Button_Equal = (Button) findViewById(R.id.button_Eql);
-
 	}
 
 	private void initializeDigits() {
@@ -97,6 +95,12 @@ public class sCalcActivity extends Activity {
 
 		// , Button_2, Button_3, Button_4, Button_5,
 		// Button_6, Button_7, Button_8, Button9, Button_0;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
