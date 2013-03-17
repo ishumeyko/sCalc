@@ -21,7 +21,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	Button Button_Add, Button_Sub, Button_Mul, Button_Div, Button_Floater,
 			Button_Equal;
 
-	String resultString = "";
+	String resultString = "", strToFormat = "";
 	Float result, operand_1, operand_2;
 
 	Boolean DotIsPressed = false;
@@ -183,18 +183,51 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		}
 
 		getInputFromDigitalKeyboard(chr);
-		tvResultString.setText(resultString);
 
+		if (EqualIsPressed) {
+			EqualIsPressed = false;
+			strToFormat = formatInputString(resultString);
+			resultString = strToFormat;
+		}
+
+		tvResultString.setText(resultString);
+	}
+
+	/**
+	 * 
+	 */
+	private String formatInputString(String str) {
+		if (str.contains(".")) {
+
+			if (str.equals(".") || str.equals("0.")) {
+				str = "0";
+				DotIsPressed = false;
+			} else if (str.endsWith(".")) {
+				str = str.substring(0, str.length() - 1);
+				DotIsPressed = false;
+			} else if (str.endsWith("0")) {
+				DotIsPressed = false;
+				while (str.length() > 1) {
+
+					if ((str.endsWith("0")) || (str.endsWith("."))) {
+						str = str.substring(0, str.length() - 1);
+					} else {
+						break;
+					}
+				}
+			}
+
+		}
+		return str;
 	}
 
 	/**
 	 * @param chr
-	 * @return 
+	 * @return
 	 */
-	//This method will get input from string
+	// This method will get input from string
 	private void getInputFromDigitalKeyboard(char chr_inner) {
-		
-		
+
 		if (resultString.length() < 13) {
 
 			// Checking if first digit is '0'
@@ -230,7 +263,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			} // End of: if (chr != 'Z')
 
 		} // End of: if (resultString.length() < 13)
-		
+
 	}
 
 }
