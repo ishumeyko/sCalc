@@ -49,6 +49,9 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				result = 0F;
 				operand_1 = 0F;
 				operand_2 = 0F;
+
+				DotIsPressed = false;
+				EqualIsPressed = false;
 			}
 		});
 
@@ -161,18 +164,36 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		case R.id.button_9:
 			chr = '9';
 			break;
+		case R.id.button_Dot:
+			chr = '.'; 
+
+			break;
 
 		default:
 			break;
 		}
+
 		
+		
+
 		if (chr != 'Z') {
-			resultString = resultString + chr;
+			if (!DotIsPressed) {
+				if (chr == '.') {
+					DotIsPressed = true;
+				}
+				resultString = resultString + chr;
+			} else {
+				if (chr != '.') {
+					resultString = resultString + chr;
+			}
+		}			
+			
+			
+			
+			
 			tvResultString.setText(resultString);
 		}
-		
-		
-		
+
 	}
 
 }
