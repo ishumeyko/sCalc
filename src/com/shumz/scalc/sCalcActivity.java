@@ -198,25 +198,17 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	 */
 	private String formatInputString(String str) {
 		if (str.contains(".")) {
-
-			if (str.equals(".") || str.equals("0.")) {
-				str = "0";
-				DotIsPressed = false;
-			} else if (str.endsWith(".")) {
-				str = str.substring(0, str.length() - 1);
-				DotIsPressed = false;
-			} else if (str.endsWith("0")) {
-				DotIsPressed = false;
-				while (str.length() > 1) {
-
-					if ((str.endsWith("0")) || (str.endsWith("."))) {
-						str = str.substring(0, str.length() - 1);
-					} else {
-						break;
-					}
+			while (str.length() > 1) {
+				if (str.endsWith(".")) {
+					str = str.substring(0, str.length() - 1);
+					DotIsPressed = false;
+					break;
+				} else if (str.endsWith("0")) {
+					str = str.substring(0, str.length() - 1);
+				} else {
+					break;
 				}
 			}
-
 		}
 		return str;
 	}
