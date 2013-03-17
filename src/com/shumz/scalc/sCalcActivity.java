@@ -165,7 +165,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			chr = '9';
 			break;
 		case R.id.button_Dot:
-			chr = '.'; 
+			chr = '.';
 
 			break;
 
@@ -173,27 +173,42 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			break;
 		}
 
-		
-		
+		if (resultString.length() < 13) {
 
-		if (chr != 'Z') {
-			if (!DotIsPressed) {
-				if (chr == '.') {
-					DotIsPressed = true;
+			if (chr != 'Z') {
+
+				if ((chr == '0') && (resultString.equals("0"))) {
+					chr = 'Z';
+					resultString = "0";
+				} else
+				if ((chr != '0') && (resultString.equals("0")) && (chr !='.')) {
+					resultString = Character.toString(chr);
+					chr = 'Z';
 				}
-				resultString = resultString + chr;
-			} else {
-				if (chr != '.') {
-					resultString = resultString + chr;
 			}
-		}			
-			
-			
-			
-			
-			tvResultString.setText(resultString);
-		}
 
+			if (chr != 'Z') {
+
+				if (!DotIsPressed) {
+					if (chr == '.') {
+						DotIsPressed = true;
+					}
+					resultString = resultString + chr;
+					if (resultString.startsWith(".")) {
+						resultString = "0.";
+					}
+				} else {
+					if (chr != '.') {
+						resultString = resultString + chr;
+					}
+
+				}// End of: if (!DotIsPressed)
+
+			} // End of: if (chr != 'Z')
+
+			tvResultString.setText(resultString);
+
+		} // End of: if (resultString.length() < 13)
 	}
 
 }
