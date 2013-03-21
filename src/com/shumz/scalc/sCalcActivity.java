@@ -30,6 +30,12 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	Boolean DotIsPressed = false;
 	Boolean EqualIsPressed = false;
+	Boolean FuncKeyIsPressed = false;
+
+	Boolean MemoryTrigger = false;
+
+	Boolean memoryCell_1 = false;
+	Boolean memoryCell_2 = false;
 
 	Boolean AddIsPressed = false;
 	Boolean SubIsPressed = false;
@@ -67,6 +73,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				DotIsPressed = false;
 				EqualIsPressed = false;
+
+				FuncKeyIsPressed = false;
 
 				AddIsPressed = false;
 				SubIsPressed = false;
@@ -188,12 +196,12 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.button_Dot:
 			chr = '.';
-
 			break;
 
 		// // Checking if Equal button was pressed
 		case R.id.button_Eql:
 			EqualIsPressed = true;
+			FuncKeyIsPressed = true;
 			break;
 
 		// Checking if Add button was pressed
@@ -202,6 +210,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			SubIsPressed = false;
 			MulIsPressed = false;
 			DivIsPressed = false;
+			FuncKeyIsPressed = true;
 
 		}
 			break;
@@ -211,6 +220,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			SubIsPressed = true;
 			MulIsPressed = false;
 			DivIsPressed = false;
+			FuncKeyIsPressed = true;
 		}
 			break;
 		// Checking if Mul button was pressed
@@ -219,6 +229,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			SubIsPressed = false;
 			MulIsPressed = true;
 			DivIsPressed = false;
+			FuncKeyIsPressed = true;
 		}
 			break;
 		// Checking if Div button was pressed
@@ -227,39 +238,36 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			SubIsPressed = false;
 			MulIsPressed = false;
 			DivIsPressed = true;
+			FuncKeyIsPressed = true;
 		}
 			break;
 
-		default:
+		default: {
 			chr = 'Z';
+			FuncKeyIsPressed = false;
+		}
 			break;
 		}
 
-		resultString = getInputFromDigitalKeyboard(chr, resultString);
-		tvResultString.setText(resultString);
-
-		//
-		if (EqualIsPressed) {
-			EqualIsPressed = false;
+		if (FuncKeyIsPressed) {
 
 			resultString = formatInputString(resultString);
-			tvResultString.setText(resultString);
-		}
 
-		if (AddIsPressed) {
-			AddIsPressed = false;
+			result = operand_2;
+			operand_2 = operand_1;
+			operand_1 = Float.valueOf(formatInputString(resultString));
 
-			resultString = formatInputString(resultString);
 			tvResultString.setText(resultString);
 
-			operand_1 = Float.valueOf(resultString);
-
-			operand_2 = result;
-			result = operand_1 + operand_2;
-			
-			tvResultString.setText(result.toString());
-
-			resultString = "";
+			if (EqualIsPressed) {
+				EqualIsPressed = false;
+			} else {
+				resultString = "0";
+			}
+			FuncKeyIsPressed = false;
+		} else {
+			resultString = getInputFromDigitalKeyboard(chr, resultString);
+			tvResultString.setText(resultString);
 		}
 
 	}
