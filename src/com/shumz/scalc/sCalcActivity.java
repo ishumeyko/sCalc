@@ -177,6 +177,40 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			EqualIsPressed = true;
 			break;
 
+		case R.id.button_Add:{
+			
+			operand_2 = operand_1;
+			operand_1 = Float.valueOf(formatInputString(resultString));
+
+			resultString = Float.toString(operand_1 + operand_2);
+			
+			formatInputString(resultString);
+			tvResultString.setText(resultString);
+			
+			EqualIsPressed = true;}
+			break;
+
+		case R.id.button_Sub:
+			EqualIsPressed = true;
+			break;
+
+		case R.id.button_Mul:
+			EqualIsPressed = true;
+			break;
+
+		case R.id.button_Div:
+			EqualIsPressed = true;
+			break;
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		default:
 			chr = 'Z';
 			break;
@@ -186,6 +220,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 		if (EqualIsPressed) {
 			EqualIsPressed = false;
+			
+			
+			
+			
+			
 			strToFormat = formatInputString(resultString);
 			resultString = strToFormat;
 		}
