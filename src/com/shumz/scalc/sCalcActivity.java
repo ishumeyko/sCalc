@@ -21,18 +21,20 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	Button Button_Add, Button_Sub, Button_Mul, Button_Div, Button_Floater,
 			Button_Equal;
 
-	String resultString = "", strToFormat = "";
-	Float result, operand_1, operand_2;
+	String resultString = "0";
+	String operandString = "0";
+
+	Float result = 0F;
+	Float operand_1 = 0F;
+	Float operand_2 = 0F;
 
 	Boolean DotIsPressed = false;
 	Boolean EqualIsPressed = false;
-	
+
 	Boolean AddIsPressed = false;
 	Boolean SubIsPressed = false;
 	Boolean MulIsPressed = false;
 	Boolean DivIsPressed = false;
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		initializeFuncKeys();
 		initializePanelKeys();
 
-		// resultString.setText("0");
+		resultString = "0";
+		operandString = "0";
+
+		tvResultString.setText(resultString);
 
 		// Clear results
 		ClearButton.setOnClickListener(new OnClickListener() {
@@ -52,6 +57,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				resultString = "0";
+				resultString = "0";
+
 				tvResultString.setText(resultString);
 
 				result = 0F;
@@ -60,6 +67,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				DotIsPressed = false;
 				EqualIsPressed = false;
+
+				AddIsPressed = false;
+				SubIsPressed = false;
+				MulIsPressed = false;
+				DivIsPressed = false;
 			}
 		});
 
@@ -92,13 +104,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Button_Floater = (Button) findViewById(R.id.button_Dot);
 		Button_Equal = (Button) findViewById(R.id.button_Eql);
 
-//		Button_Add.setOnClickListener(this);
-//		Button_Sub.setOnClickListener(this);
-//		Button_Mul.setOnClickListener(this);
-//		Button_Div.setOnClickListener(this);
+		Button_Add.setOnClickListener(this);
+		Button_Sub.setOnClickListener(this);
+		Button_Mul.setOnClickListener(this);
+		Button_Div.setOnClickListener(this);
 
 		Button_Floater.setOnClickListener(this);
-//		Button_Equal.setOnClickListener(this);
+		Button_Equal.setOnClickListener(this);
 
 	}
 
@@ -179,47 +191,81 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			break;
 
-//		// Checking if Equal button was pressed
-//		case R.id.button_Eql:
-//			EqualIsPressed = true;
-//			break;
-//
-//		// Checking if Equal button was pressed
-//		case R.id.button_Add:
-//			EqualIsPressed = true;
-//			break;
-//
-//		case R.id.button_Sub:
-//			EqualIsPressed = true;
-//			break;
-//
-//		case R.id.button_Mul:
-//			EqualIsPressed = true;
-//			break;
-//
-//		case R.id.button_Div:
-//			EqualIsPressed = true;
-//			break;		
+		// // Checking if Equal button was pressed
+		case R.id.button_Eql:
+			EqualIsPressed = true;
+			break;
+
+		// Checking if Add button was pressed
+		case R.id.button_Add: {
+			AddIsPressed = true;
+			SubIsPressed = false;
+			MulIsPressed = false;
+			DivIsPressed = false;
+
+		}
+			break;
+		// Checking if Sub button was pressed
+		case R.id.button_Sub: {
+			AddIsPressed = false;
+			SubIsPressed = true;
+			MulIsPressed = false;
+			DivIsPressed = false;
+		}
+			break;
+		// Checking if Mul button was pressed
+		case R.id.button_Mul: {
+			AddIsPressed = false;
+			SubIsPressed = false;
+			MulIsPressed = true;
+			DivIsPressed = false;
+		}
+			break;
+		// Checking if Div button was pressed
+		case R.id.button_Div: {
+			AddIsPressed = false;
+			SubIsPressed = false;
+			MulIsPressed = false;
+			DivIsPressed = true;
+		}
+			break;
 
 		default:
 			chr = 'Z';
 			break;
 		}
 
-		getInputFromDigitalKeyboard(chr);
-
-//		if (EqualIsPressed) {
-//			EqualIsPressed = false;
-//			strToFormat = formatInputString(resultString);
-//			resultString = strToFormat;
-//		}
-
+		resultString = getInputFromDigitalKeyboard(chr, resultString);
 		tvResultString.setText(resultString);
+
+		//
+		if (EqualIsPressed) {
+			EqualIsPressed = false;
+
+			resultString = formatInputString(resultString);
+			tvResultString.setText(resultString);
+		}
+
+		if (AddIsPressed) {
+			AddIsPressed = false;
+
+			resultString = formatInputString(resultString);
+			tvResultString.setText(resultString);
+
+			operand_1 = Float.valueOf(resultString);
+
+			operand_2 = result;
+			result = operand_1 + operand_2;
+			
+			tvResultString.setText(result.toString());
+
+			resultString = "";
+		}
+
 	}
 
-	/**
-	 * 
-	 */
+	// This method will format entered char sequence into the string applicable
+	// to convert it into the Float number.
 	private String formatInputString(String str) {
 		if (str.contains(".")) {
 			while (str.length() > 1) {
@@ -237,23 +283,19 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		return str;
 	}
 
-	/**
-	 * @param chr
-	 * @return
-	 */
 	// This method will get input from string
-	private void getInputFromDigitalKeyboard(char chr_inner) {
+	private String getInputFromDigitalKeyboard(char chr_inner, String inner_str) {
 
-		if (resultString.length() < 13) {
+		if (inner_str.length() < 13) {
 
 			// Checking if first digit is '0'
 			if (chr_inner != 'Z') {
-				if ((chr_inner == '0') && (resultString.equals("0"))) {
+				if ((chr_inner == '0') && (inner_str.equals("0"))) {
 					chr_inner = 'Z';
-					resultString = "0";
-				} else if ((chr_inner != '0') && (resultString.equals("0"))
+					inner_str = "0";
+				} else if ((chr_inner != '0') && (inner_str.equals("0"))
 						&& (chr_inner != '.')) {
-					resultString = Character.toString(chr_inner);
+					inner_str = Character.toString(chr_inner);
 					chr_inner = 'Z';
 				}
 			}
@@ -265,13 +307,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 					if (chr_inner == '.') {
 						DotIsPressed = true;
 					}
-					resultString = resultString + chr_inner;
-					if (resultString.startsWith(".")) {
-						resultString = "0.";
+					inner_str = inner_str + chr_inner;
+					if (inner_str.startsWith(".")) {
+						inner_str = "0.";
 					}
 				} else {
 					if (chr_inner != '.') {
-						resultString = resultString + chr_inner;
+						inner_str = inner_str + chr_inner;
 					}
 
 				}// End of: if (!DotIsPressed)
@@ -279,9 +321,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			} // End of: if (chr_inner != 'Z')
 
 		} // End of: if (resultString.length() < 13)
+		return inner_str;
 
 	}
-	
+
 }
 
 // @Override
