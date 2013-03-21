@@ -255,7 +255,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			result = operand_2;
 			operand_2 = operand_1;
-			operand_1 = Float.valueOf(formatInputString(resultString));
+			operand_1 = Float.valueOf(resultString);
 
 			tvResultString.setText(resultString);
 
@@ -264,6 +264,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			} else {
 				resultString = "0";
 			}
+
 			FuncKeyIsPressed = false;
 		} else {
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
@@ -284,6 +285,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				} else if (str.endsWith("0")) {
 					str = str.substring(0, str.length() - 1);
 				} else {
+					DotIsPressed = false;
 					break;
 				}
 			}
