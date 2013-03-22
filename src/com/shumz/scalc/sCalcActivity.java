@@ -42,6 +42,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	Boolean MulIsPressed = false;
 	Boolean DivIsPressed = false;
 
+	Boolean AddWasPressed = false;
+	Boolean SubWasPressed = false;
+	Boolean MulWasPressed = false;
+	Boolean DivWasPressed = false;
+
+	Boolean FuncKeyWasPressed = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,10 +83,17 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				FuncKeyIsPressed = false;
 
+				FuncKeyWasPressed = false;
+
 				AddIsPressed = false;
 				SubIsPressed = false;
 				MulIsPressed = false;
 				DivIsPressed = false;
+
+				AddWasPressed = false;
+				SubWasPressed = false;
+				MulWasPressed = false;
+				DivWasPressed = false;
 			}
 		});
 
@@ -206,39 +220,71 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 		// Checking if Add button was pressed
 		case R.id.button_Add: {
+			if (!FuncKeyWasPressed) {
+				if (AddIsPressed) {
+					FuncKeyWasPressed = true;
+				} else {
+					FuncKeyWasPressed = false;
+				}
+			}
 			AddIsPressed = true;
 			SubIsPressed = false;
 			MulIsPressed = false;
 			DivIsPressed = false;
 			FuncKeyIsPressed = true;
+			EqualIsPressed = false;
 
 		}
 			break;
 		// Checking if Sub button was pressed
 		case R.id.button_Sub: {
+			if (!FuncKeyWasPressed) {
+				if (SubIsPressed) {
+					FuncKeyWasPressed = true;
+				} else {
+					FuncKeyWasPressed = false;
+				}
+			}
 			AddIsPressed = false;
 			SubIsPressed = true;
 			MulIsPressed = false;
 			DivIsPressed = false;
 			FuncKeyIsPressed = true;
+			EqualIsPressed = false;
 		}
 			break;
 		// Checking if Mul button was pressed
 		case R.id.button_Mul: {
+			if (!FuncKeyWasPressed) {
+				if (MulIsPressed) {
+					FuncKeyWasPressed = true;
+				} else {
+					FuncKeyWasPressed = false;
+				}
+			}
 			AddIsPressed = false;
 			SubIsPressed = false;
 			MulIsPressed = true;
 			DivIsPressed = false;
 			FuncKeyIsPressed = true;
+			EqualIsPressed = false;
 		}
 			break;
 		// Checking if Div button was pressed
 		case R.id.button_Div: {
+			if (!FuncKeyWasPressed) {
+				if (DivIsPressed) {
+					FuncKeyWasPressed = true;
+				} else {
+					FuncKeyWasPressed = false;
+				}
+			}
 			AddIsPressed = false;
 			SubIsPressed = false;
 			MulIsPressed = false;
 			DivIsPressed = true;
 			FuncKeyIsPressed = true;
+			EqualIsPressed = false;
 		}
 			break;
 
@@ -252,23 +298,29 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		if (FuncKeyIsPressed) {
 
 			resultString = formatInputString(resultString);
-
-			result = operand_2;
-			operand_2 = operand_1;
-			operand_1 = Float.valueOf(resultString);
-
 			tvResultString.setText(resultString);
+
+//			if (!FuncKeyWasPressed) {
+//				result = operand_1;
+//				resultString = formatInputString(resultString);
+//				result = Float.valueOf(resultString);
+//
+//			}
 
 			if (EqualIsPressed) {
 				EqualIsPressed = false;
 			} else {
-				resultString = "0";
+				if (!FuncKeyWasPressed) {
+					resultString = "0";
+				}
 			}
 
 			FuncKeyIsPressed = false;
 		} else {
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
 			tvResultString.setText(resultString);
+
+			FuncKeyWasPressed = false;
 		}
 
 	}
