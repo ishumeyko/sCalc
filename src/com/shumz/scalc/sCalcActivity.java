@@ -289,6 +289,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			break;
 
 		default: {
+
 			chr = 'Z';
 			FuncKeyIsPressed = false;
 		}
@@ -300,12 +301,12 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			resultString = formatInputString(resultString);
 			tvResultString.setText(resultString);
 
-//			if (!FuncKeyWasPressed) {
-//				result = operand_1;
-//				resultString = formatInputString(resultString);
-//				result = Float.valueOf(resultString);
-//
-//			}
+			// if (!FuncKeyWasPressed) {
+			// result = operand_1;
+			// resultString = formatInputString(resultString);
+			// result = Float.valueOf(resultString);
+			//
+			// }
 
 			if (EqualIsPressed) {
 				EqualIsPressed = false;
@@ -321,6 +322,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			tvResultString.setText(resultString);
 
 			FuncKeyWasPressed = false;
+
 		}
 
 	}
