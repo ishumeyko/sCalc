@@ -61,6 +61,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		resultString = "0";
 		operandString = "0";
 
+		FuncKeyIsPressed = false;
+
 		tvResultString.setText(resultString);
 
 		// Clear results
@@ -69,7 +71,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				resultString = "0";
 				resultString = "0";
 
 				tvResultString.setText(resultString);
@@ -165,6 +166,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		char chr = 'Z';
+		char lastActionKey = 'Z';
 
 		switch (v.getId()) {
 
@@ -172,39 +174,30 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		case R.id.button_0:
 			chr = '0';
 			break;
-
 		case R.id.button_1:
 			chr = '1';
 			break;
-
 		case R.id.button_2:
 			chr = '2';
 			break;
-
 		case R.id.button_3:
 			chr = '3';
 			break;
-
 		case R.id.button_4:
 			chr = '4';
 			break;
-
 		case R.id.button_5:
 			chr = '5';
 			break;
-
 		case R.id.button_6:
 			chr = '6';
 			break;
-
 		case R.id.button_7:
 			chr = '7';
 			break;
-
 		case R.id.button_8:
 			chr = '8';
 			break;
-
 		case R.id.button_9:
 			chr = '9';
 			break;
@@ -215,112 +208,49 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		// // Checking if Equal button was pressed
 		case R.id.button_Eql:
 			EqualIsPressed = true;
-			FuncKeyIsPressed = true;
 			break;
-
 		// Checking if Add button was pressed
-		case R.id.button_Add: {
-			if (!FuncKeyWasPressed) {
-				if (AddIsPressed) {
-					FuncKeyWasPressed = true;
-				} else {
-					FuncKeyWasPressed = false;
-				}
-			}
-			AddIsPressed = true;
-			SubIsPressed = false;
-			MulIsPressed = false;
-			DivIsPressed = false;
+		case R.id.button_Add:
+			lastActionKey = 'A';
 			FuncKeyIsPressed = true;
-			EqualIsPressed = false;
-
-		}
 			break;
 		// Checking if Sub button was pressed
-		case R.id.button_Sub: {
-			if (!FuncKeyWasPressed) {
-				if (SubIsPressed) {
-					FuncKeyWasPressed = true;
-				} else {
-					FuncKeyWasPressed = false;
-				}
-			}
-			AddIsPressed = false;
-			SubIsPressed = true;
-			MulIsPressed = false;
-			DivIsPressed = false;
+		case R.id.button_Sub:
+			lastActionKey = 'S';
 			FuncKeyIsPressed = true;
-			EqualIsPressed = false;
-		}
 			break;
 		// Checking if Mul button was pressed
-		case R.id.button_Mul: {
-			if (!FuncKeyWasPressed) {
-				if (MulIsPressed) {
-					FuncKeyWasPressed = true;
-				} else {
-					FuncKeyWasPressed = false;
-				}
-			}
-			AddIsPressed = false;
-			SubIsPressed = false;
-			MulIsPressed = true;
-			DivIsPressed = false;
+		case R.id.button_Mul:
+			lastActionKey = 'M';
 			FuncKeyIsPressed = true;
-			EqualIsPressed = false;
-		}
 			break;
 		// Checking if Div button was pressed
-		case R.id.button_Div: {
-			if (!FuncKeyWasPressed) {
-				if (DivIsPressed) {
-					FuncKeyWasPressed = true;
-				} else {
-					FuncKeyWasPressed = false;
-				}
-			}
-			AddIsPressed = false;
-			SubIsPressed = false;
-			MulIsPressed = false;
-			DivIsPressed = true;
+		case R.id.button_Div:
+			lastActionKey = 'D';
 			FuncKeyIsPressed = true;
-			EqualIsPressed = false;
-		}
 			break;
-
 		default: {
 			chr = 'Z';
-			FuncKeyIsPressed = false;
 		}
 			break;
 		}
 
-		if (FuncKeyIsPressed) {
+		if ((FuncKeyIsPressed) || (EqualIsPressed)) {
 
-			resultString = formatInputString(resultString);
-			tvResultString.setText(resultString);
+			 if ((FuncKeyIsPressed) && (!EqualIsPressed)) {
+			 resultString = formatInputString(resultString);
+			 tvResultString.setText(resultString);
+			 resultString = "0";
+			 FuncKeyIsPressed = false;
+			 } else {
+			 EqualIsPressed = false;
+			 resultString = formatInputString(resultString);
+			 tvResultString.setText(resultString);
+			 }
 
-//			if (!FuncKeyWasPressed) {
-//				result = operand_1;
-//				resultString = formatInputString(resultString);
-//				result = Float.valueOf(resultString);
-//
-//			}
-
-			if (EqualIsPressed) {
-				EqualIsPressed = false;
-			} else {
-				if (!FuncKeyWasPressed) {
-					resultString = "0";
-				}
-			}
-
-			FuncKeyIsPressed = false;
 		} else {
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
 			tvResultString.setText(resultString);
-
-			FuncKeyWasPressed = false;
 		}
 
 	}
