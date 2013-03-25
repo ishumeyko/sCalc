@@ -235,12 +235,15 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+		if (FuncKeyIsPressed) {
+			FuncKeyWasPressed = true;
+		}
+		
 		if ((FuncKeyIsPressed) || (EqualIsPressed)) {
 
 			 if ((FuncKeyIsPressed) && (!EqualIsPressed)) {
 			 resultString = formatInputString(resultString);
 			 tvResultString.setText(resultString);
-			 resultString = "0";
 			 FuncKeyIsPressed = false;
 			 } else {
 			 EqualIsPressed = false;
@@ -249,6 +252,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			 }
 
 		} else {
+			if (FuncKeyWasPressed) {
+				FuncKeyWasPressed = false;
+				resultString = "0";
+				DotIsPressed = false;
+			}
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
 			tvResultString.setText(resultString);
 		}
@@ -267,10 +275,15 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				} else if (str.endsWith("0")) {
 					str = str.substring(0, str.length() - 1);
 				} else {
-					DotIsPressed = false;
 					break;
 				}
 			}
+		}
+		
+		if  (str.contains(".")) {
+			DotIsPressed = true;
+		} else {
+			DotIsPressed = false;
 		}
 		return str;
 	}
