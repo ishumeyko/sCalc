@@ -238,18 +238,18 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		if (FuncKeyIsPressed) {
 			FuncKeyWasPressed = true;
 		}
-		
+
 		if ((FuncKeyIsPressed) || (EqualIsPressed)) {
 
-			 if ((FuncKeyIsPressed) && (!EqualIsPressed)) {
-			 resultString = formatInputString(resultString);
-			 tvResultString.setText(resultString);
-			 FuncKeyIsPressed = false;
-			 } else {
-			 EqualIsPressed = false;
-			 resultString = formatInputString(resultString);
-			 tvResultString.setText(resultString);
-			 }
+			if ((FuncKeyIsPressed) && (!EqualIsPressed)) {
+				resultString = formatInputString(resultString);
+				tvResultString.setText(resultString);
+				FuncKeyIsPressed = false;
+			} else {
+				EqualIsPressed = false;
+				resultString = formatInputString(resultString);
+				tvResultString.setText(resultString);
+			}
 
 		} else {
 			if (FuncKeyWasPressed) {
@@ -279,8 +279,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-		
-		if  (str.contains(".")) {
+
+		if (str.contains(".")) {
 			DotIsPressed = true;
 		} else {
 			DotIsPressed = false;
