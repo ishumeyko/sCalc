@@ -248,9 +248,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 		if (FuncKeyIsPressed) {
 
-			operand_1 = operand_2;
-			Log.i(APP, "operand_1 now is: " + operand_1.toString());
-
 			Log.i(APP, "'FuncKeyIsPressed' is: " + FuncKeyIsPressed.toString());
 
 			FuncKeyWasPressed = true;
@@ -278,25 +275,33 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 		} else {
 			
+			
+			if (FuncKeyWasPressed) {
+				FuncKeyWasPressed = false;
+				Log.i(APP, "'FuncKeyWasPressed' is: " + FuncKeyWasPressed.toString());
+
+				
+				operand_1 = operand_2;
+				Log.i(APP, "operand_1 now is: " + operand_1.toString());
+			
+				
+				resultString = formatInputString(resultString);
+				operand_2 = Float.valueOf(resultString);
+				Log.i(APP, "operand_2 now is: " + operand_2.toString());
+
+				resultString = "0";
+				Log.i(APP, "resultString now is: " + resultString);
+
+				DotIsPressed = false;
+
+			}
+
+			
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
 			tvResultString.setText(resultString);
 		}
 		
-		if (FuncKeyWasPressed) {
-			FuncKeyWasPressed = false;
-			Log.i(APP, "'FuncKeyWasPressed' is: " + FuncKeyWasPressed.toString());
-
-			resultString = formatInputString(resultString);
-			operand_2 = Float.valueOf(resultString);
-			Log.i(APP, "operand_2 now is: " + operand_2.toString());
-
-			resultString = "0";
-			Log.i(APP, "resultString now is: " + resultString);
-
-			DotIsPressed = false;
-
-		}
-
+		
 	}
 
 	// This method will format entered char sequence into the string applicable
