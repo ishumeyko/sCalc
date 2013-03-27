@@ -1,6 +1,7 @@
 package com.shumz.scalc;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 import android.app.Activity;
 
 public class sCalcActivity extends Activity implements OnClickListener {
+
+	static public final String APP = "Simple Calculator";
 
 	// Declaring Elements of Activity...
 
@@ -54,14 +57,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scalc_activity);
 
+		Log.i(APP, "Activity is created...");
+
 		initializeDigits();
 		initializeFuncKeys();
 		initializePanelKeys();
 
-		resultString = "0";
-		operandString = "0";
-
-		FuncKeyIsPressed = false;
+		Log.i(APP, "initialization performed...");
 
 		tvResultString.setText(resultString);
 
@@ -83,7 +85,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				EqualIsPressed = false;
 
 				FuncKeyIsPressed = false;
-
 				FuncKeyWasPressed = false;
 
 				AddIsPressed = false;
@@ -95,6 +96,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				SubWasPressed = false;
 				MulWasPressed = false;
 				DivWasPressed = false;
+
+				Log.i(APP, "All vars are cleared...");
 			}
 		});
 
@@ -104,8 +107,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Log.i(APP, "Exit...");
+
 				finish();
 				System.exit(0);
+
 			}
 		});
 	}
@@ -115,6 +121,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		OffButton = (Button) findViewById(R.id.buttonOff);
 		ClearButton = (Button) findViewById(R.id.buttonClear);
 		tvResultString = (TextView) findViewById(R.id.tvResult);
+
+		Log.i(APP, "initialized Panel keys...");
 	}
 
 	private void initializeFuncKeys() {
@@ -135,6 +143,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Button_Floater.setOnClickListener(this);
 		Button_Equal.setOnClickListener(this);
 
+		Log.i(APP, "initialized Functional keys...");
 	}
 
 	private void initializeDigits() {
@@ -160,6 +169,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Button_8.setOnClickListener(this);
 		Button_9.setOnClickListener(this);
 		Button_0.setOnClickListener(this);
+
+		Log.i(APP, "initialized Digital keys...");
 	}
 
 	@Override
@@ -236,7 +247,14 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		}
 
 		if (FuncKeyIsPressed) {
+
+			operand_1 = operand_2;
+			Log.i(APP, "operand_1 now is: " + operand_1.toString());
+
+			Log.i(APP, "'FuncKeyIsPressed' is: " + FuncKeyIsPressed.toString());
+
 			FuncKeyWasPressed = true;
+			Log.i(APP, "'FuncKeyWasPressed' is: " + FuncKeyWasPressed.toString());
 		}
 
 		if ((FuncKeyIsPressed) || (EqualIsPressed)) {
@@ -245,20 +263,38 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
 				FuncKeyIsPressed = false;
+				Log.i(APP, "'FuncKeyIsPressed' is: " + FuncKeyIsPressed.toString());
 			} else {
 				EqualIsPressed = false;
+				Log.i(APP, "'EqualIsPressed' is: " + FuncKeyIsPressed.toString());
+				
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
+				
+				Log.i(APP, "operand_1 now is: " + operand_1.toString());
+				Log.i(APP, "operand_2 now is: " + operand_2.toString());
+				
 			}
 
 		} else {
-			if (FuncKeyWasPressed) {
-				FuncKeyWasPressed = false;
-				resultString = "0";
-				DotIsPressed = false;
-			}
+			
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
 			tvResultString.setText(resultString);
+		}
+		
+		if (FuncKeyWasPressed) {
+			FuncKeyWasPressed = false;
+			Log.i(APP, "'FuncKeyWasPressed' is: " + FuncKeyWasPressed.toString());
+
+			resultString = formatInputString(resultString);
+			operand_2 = Float.valueOf(resultString);
+			Log.i(APP, "operand_2 now is: " + operand_2.toString());
+
+			resultString = "0";
+			Log.i(APP, "resultString now is: " + resultString);
+
+			DotIsPressed = false;
+
 		}
 
 	}
