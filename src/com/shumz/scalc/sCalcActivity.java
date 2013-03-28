@@ -173,6 +173,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		char chr = 'Z';
+		char lastActionKey = 'Z';
 
 		switch (v.getId()) {
 
@@ -261,6 +262,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				resultString = "0";
 				DotIsPressed = false;
 			}
+
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
 			tvResultString.setText(resultString);
 		}
@@ -342,6 +344,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				} else if (str.endsWith("0")) {
 					str = str.substring(0, str.length() - 1);
 				} else {
+					DotIsPressed = false;
 					break;
 				}
 			}
