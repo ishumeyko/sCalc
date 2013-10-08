@@ -22,7 +22,7 @@ public class Splash extends Activity {
 		Thread splash_melody_timer = new Thread() {
 			public void run() {
 				try {
-					sleep(5500);
+					sleep(500);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
