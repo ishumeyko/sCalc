@@ -72,7 +72,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+
 				resultString = "0";
 
 				tvResultString.setText(resultString);
@@ -106,18 +106,17 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+
 				Log.i(APP, "Exit...");
 
 				finish();
 				System.exit(0);
-
 			}
 		});
 	}
 
 	private void initializePanelKeys() {
-		// TODO Auto-generated method stub
+
 		OffButton = (Button) findViewById(R.id.buttonOff);
 		ClearButton = (Button) findViewById(R.id.buttonClear);
 		tvResultString = (TextView) findViewById(R.id.tvResult);
@@ -126,7 +125,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	}
 
 	private void initializeFuncKeys() {
-		// TODO Auto-generated method stub
+
 
 		Button_Add = (Button) findViewById(R.id.button_Add);
 		Button_Sub = (Button) findViewById(R.id.button_Sub);
@@ -147,7 +146,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	}
 
 	private void initializeDigits() {
-		// TODO Auto-generated method stub
+
 		Button_1 = (Button) findViewById(R.id.button_1);
 		Button_2 = (Button) findViewById(R.id.button_2);
 		Button_3 = (Button) findViewById(R.id.button_3);
@@ -175,7 +174,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+
 		char chr = 'Z';
 		char lastActionKey = 'Z';
 
@@ -298,12 +297,39 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			
 			resultString = getInputFromDigitalKeyboard(chr, resultString);
+//			resultString = String.valueOf(evaluate(operand_1, operand_2, chr));
+			
 			tvResultString.setText(resultString);
 		}
 		
 		
 	}
 
+	private float evaluate(float op_one, float op_two, char func) {
+		
+		float res = 0;
+		
+		switch (func) {
+		case 'A': res = op_one + op_two;
+			
+			break;
+		case 'S': res = op_one - op_two;
+			
+			break;
+		case 'M': res = op_one * op_two;
+			
+			break;
+		case 'D': res = op_one / op_two;
+			
+			break;
+
+		default:
+			break;
+		}	
+		
+		return res;	
+	}
+	
 	// This method will format entered char sequence into the string applicable
 	// to convert it into the Float number.
 	private String formatInputString(String str) {
