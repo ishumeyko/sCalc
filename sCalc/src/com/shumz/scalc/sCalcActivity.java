@@ -10,7 +10,7 @@ import android.app.Activity;
 
 public class sCalcActivity extends Activity implements OnClickListener {
 
-	static public final String APP = "Simple Calculator";
+	private static final String APP = "Simple Calculator";
 
 	// Declaring Elements of Activity...
 
@@ -26,6 +26,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	String resultString = "0";
 	String operandString = "0";
+
+	char funcKey = 'Z';
 
 	Float result = 0F;
 	Float operand_1 = 0F;
@@ -126,7 +128,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	private void initializeFuncKeys() {
 
-
 		Button_Add = (Button) findViewById(R.id.button_Add);
 		Button_Sub = (Button) findViewById(R.id.button_Sub);
 		Button_Mul = (Button) findViewById(R.id.button_Mul);
@@ -134,13 +135,78 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Button_Floater = (Button) findViewById(R.id.button_Dot);
 		Button_Equal = (Button) findViewById(R.id.button_Eql);
 
-		Button_Add.setOnClickListener(this);
-		Button_Sub.setOnClickListener(this);
-		Button_Mul.setOnClickListener(this);
-		Button_Div.setOnClickListener(this);
-
 		Button_Floater.setOnClickListener(this);
-		Button_Equal.setOnClickListener(this);
+
+		Button_Add.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				funcKey = 'A';
+			}
+		});
+
+		Button_Sub.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				funcKey = 'S';
+			}
+		});
+
+		Button_Mul.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				funcKey = 'M';
+			}
+		});
+
+		Button_Div.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				funcKey = 'D';
+			}
+		});
+
+		Button_Equal.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				if (funcKey == 'Z') {
+					resultString = formatInputString(resultString);
+					tvResultString.setText(resultString);
+				} else {
+					switch (funcKey) {
+					case 'A':
+
+						break;
+
+					case 'S':
+
+						break;
+
+					case 'M':
+
+						break;
+
+					case 'D':
+
+						break;
+
+					default:
+						break;
+					}
+				}
+
+			}
+		});
 
 		Log.i(APP, "initialized Functional keys...");
 	}
@@ -176,7 +242,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		char chr = 'Z';
-		char lastActionKey = 'Z';
 
 		switch (v.getId()) {
 
@@ -214,122 +279,16 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		case R.id.button_Dot:
 			chr = '.';
 			break;
-
-		// // Checking if Equal button was pressed
-		case R.id.button_Eql:
-			EqualIsPressed = true;
-			break;
-		// Checking if Add button was pressed
-		case R.id.button_Add:
-			lastActionKey = 'A';
-			FuncKeyIsPressed = true;
-			break;
-		// Checking if Sub button was pressed
-		case R.id.button_Sub:
-			lastActionKey = 'S';
-			FuncKeyIsPressed = true;
-			break;
-		// Checking if Mul button was pressed
-		case R.id.button_Mul:
-			lastActionKey = 'M';
-			FuncKeyIsPressed = true;
-			break;
-		// Checking if Div button was pressed
-		case R.id.button_Div:
-			lastActionKey = 'D';
-			FuncKeyIsPressed = true;
-			break;
-		default: {
-			chr = 'Z';
-		}
-			break;
-		}
-
-		if (FuncKeyIsPressed) {
-
-			Log.i(APP, "'FuncKeyIsPressed' is: " + FuncKeyIsPressed.toString());
-
-			FuncKeyWasPressed = true;
-			Log.i(APP, "'FuncKeyWasPressed' is: " + FuncKeyWasPressed.toString());
-		}
-
-		if ((FuncKeyIsPressed) || (EqualIsPressed)) {
-
-			if ((FuncKeyIsPressed) && (!EqualIsPressed)) {
-				resultString = formatInputString(resultString);
-				tvResultString.setText(resultString);
-				FuncKeyIsPressed = false;
-				Log.i(APP, "'FuncKeyIsPressed' is: " + FuncKeyIsPressed.toString());
-			} else {
-				EqualIsPressed = false;
-				Log.i(APP, "'EqualIsPressed' is: " + FuncKeyIsPressed.toString());
-				
-				resultString = formatInputString(resultString);
-				tvResultString.setText(resultString);
-				
-				Log.i(APP, "operand_1 now is: " + operand_1.toString());
-				Log.i(APP, "operand_2 now is: " + operand_2.toString());
-				
-			}
-
-		} else {
-			
-			
-			if (FuncKeyWasPressed) {
-				FuncKeyWasPressed = false;
-				Log.i(APP, "'FuncKeyWasPressed' is: " + FuncKeyWasPressed.toString());
-
-				
-				operand_1 = operand_2;
-				Log.i(APP, "operand_1 now is: " + operand_1.toString());
-			
-				
-				resultString = formatInputString(resultString);
-				operand_2 = Float.valueOf(resultString);
-				Log.i(APP, "operand_2 now is: " + operand_2.toString());
-
-				resultString = "0";
-				Log.i(APP, "resultString now is: " + resultString);
-
-				DotIsPressed = false;
-
-			}
-
-			
-			resultString = getInputFromDigitalKeyboard(chr, resultString);
-//			resultString = String.valueOf(evaluate(operand_1, operand_2, chr));
-			
-			tvResultString.setText(resultString);
-		}
-		
-		
-	}
-
-	private float evaluate(float op_one, float op_two, char func) {
-		
-		float res = 0;
-		
-		switch (func) {
-		case 'A': res = op_one + op_two;
-			
-			break;
-		case 'S': res = op_one - op_two;
-			
-			break;
-		case 'M': res = op_one * op_two;
-			
-			break;
-		case 'D': res = op_one / op_two;
-			
-			break;
-
 		default:
+			chr = 'Z';
 			break;
-		}	
-		
-		return res;	
+		}
+
+		resultString = getInputFromDigitalKeyboard(chr, resultString);
+		tvResultString.setText(resultString);
+
 	}
-	
+
 	// This method will format entered char sequence into the string applicable
 	// to convert it into the Float number.
 	private String formatInputString(String str) {
