@@ -1,12 +1,14 @@
 package com.shumz.scalc;
 
+import java.util.LinkedList;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.app.Activity;
 
 public class sCalcActivity extends Activity implements OnClickListener {
 
@@ -56,6 +58,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	Boolean wasFuncKeyPressed = false;
 
+	String[] stack = { null, null, null, null, null, null, null };
+
+	LinkedList<String> llStack = new LinkedList<String>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,7 +95,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				isEqualPressed = false;
 				isFuncKeyPressed = false;
-				Boolean isDigitPressed = false;
+				isDigitPressed = false;
 
 				wasFuncKeyPressed = false;
 
@@ -105,7 +111,14 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				funcKey = 'Z';
 
+				for (int i = 0; i < stack.length; i++) {
+					stack[i] = null;
+				}
+
 				Log.i(APP, "All vars are cleared...");
+
+				llStack.clear();
+
 			}
 		});
 
@@ -149,23 +162,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				
-				if(isEqualPressed) {
-					resultString = formatInputString(resultString);
-					operand_1 = Float.valueOf(resultString);
-				}
-				
-				if (isDigitPressed) {
-					resultString = formatInputString(resultString);
-					tvResultString.setText(resultString);
-				}
-				
-				
-				
+				resultString = formatInputString(resultString);
+				tvResultString.setText(resultString);
+
+				funcKey = 'A';
 				isFuncKeyPressed = true;
-				isEqualPressed = false;
-				isDigitPressed = false;
-			
 			}
 		});
 
@@ -175,6 +176,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				funcKey = 'S';
+				isFuncKeyPressed = true;
 			}
 		});
 
@@ -184,6 +186,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				funcKey = 'M';
+				isFuncKeyPressed = true;
 			}
 		});
 
@@ -193,6 +196,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				funcKey = 'D';
+				isFuncKeyPressed = true;
 			}
 		});
 
@@ -200,21 +204,38 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onClick(View v) {
+				// TODO Auto-generated method stub
 
-				if (isFuncKeyPressed){
+				if (llStack.isEmpty()) {
+
 					resultString = formatInputString(resultString);
-					operand_2 = Float.valueOf(resultString);
+
+					tvResultString.setText(resultString);
+
+					operand_1 = Float.valueOf(resultString);
+
+					llStack.addFirst(resultString);
+				} else if (llStack.size() == 1) {
+					resultString = formatInputString(resultString);
+					tvResultString.setText(resultString);
+					operand_1 = Float.valueOf(resultString);
+					
+					llStack.removeFirst();
+					llStack.addFirst(resultString);
+				} else if (llStack.size() >= 2) {
+					
 				}
-				
-				
-				
-				isFuncKeyPressed = false;
-				isEqualPressed = true;
-				isDigitPressed = false;
+
+				tvResultString.setText(resultString);
 			}
 		});
 
 		Log.i(APP, "initialized Functional keys...");
+	}
+
+	protected void evaluate() {
+		// TODO Auto-generated method stub
+
 	}
 
 	private void initializeDigits() {
@@ -246,6 +267,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+
+		if (isFuncKeyPressed) {
+			resultString = "0";
+		}
 
 		char chr = 'Z';
 
@@ -290,37 +315,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			break;
 		}
 
-		isFuncKeyPressed = false;
-		isEqualPressed = false;
 		isDigitPressed = true;
+		// isFuncKeyPressed = false;
+		isEqualPressed = false;
 
 		resultString = getInputFromDigitalKeyboard(chr, resultString);
 		tvResultString.setText(resultString);
 
-	}
-
-	private float evaluate(float op_one, float op_two, char func) {
-		float res;
-
-		switch (func) {
-		case 'A':
-			res = op_one + op_two;
-			break;
-		case 'S':
-			res = op_one - op_two;
-			break;
-		case 'M':
-			res = op_one * op_two;
-			break;
-		case 'D':
-			res = op_one / op_two;
-			break;
-		default:
-			res = (Float) null;
-			break;
-		}
-
-		return res;
 	}
 
 	// This method will format entered char sequence into the string applicable
