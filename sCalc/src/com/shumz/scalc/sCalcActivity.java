@@ -2,6 +2,8 @@ package com.shumz.scalc;
 
 import java.util.LinkedList;
 
+
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -56,16 +58,31 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	LinkedList<String> llStack = new LinkedList<String>();
 
+	
+	
+	//Debug Logger Code BEGIN
+	boolean isDebugLoggerEnabled = true;
+
+	
+	
+
+	//Debug Logger Code END
+	
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if (android.os.Build.VERSION.SDK_INT > 10) {
-			ActionBar ABAr = getActionBar();
-			ABAr.hide();
+		if (isDebugLoggerEnabled) {
+			if (android.os.Build.VERSION.SDK_INT > 10) {
+				ActionBar ABar = getActionBar();
+				ABar.hide();
+			}
+			setContentView(R.layout.activity_scalc_logger);
+		} else {
+			setContentView(R.layout.activity_scalc);
 		}
-		setContentView(R.layout.activity_scalc_activity);
 
 		Log.i(APP, "Activity is created...");
 
@@ -110,10 +127,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				DivWasPressed = false;
 
 				funcKey = 'Z';
-
-				for (int i = 0; i < stack.length; i++) {
-					stack[i] = null;
-				}
 
 				Log.i(APP, "All vars are cleared...");
 

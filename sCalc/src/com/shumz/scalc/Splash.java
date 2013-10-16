@@ -8,6 +8,10 @@ import android.os.Bundle;
 public class Splash extends Activity {
 
 	MediaPlayer splash_melody;
+	// Debug Logger Code BEGIN
+	boolean isDebugLoggerEnabled = true;
+
+	// Debug Logger Code END
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -15,28 +19,34 @@ public class Splash extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 
-		splash_melody = MediaPlayer.create(this,
-				R.raw.first_lightning_splash_sound_5sec);
-		splash_melody.start();
+		if (isDebugLoggerEnabled) {
+			finish();
+			Intent openStartingPoint = new Intent(
+					"com.shumz.scalc.SCALCACTIVITY");
+			startActivity(openStartingPoint);
+		} else {
+			splash_melody = MediaPlayer.create(this,
+					R.raw.first_lightning_splash_sound_5sec);
+			splash_melody.start();
 
-		Thread splash_melody_timer = new Thread() {
-			public void run() {
-				try {
-					sleep(500);
+			Thread splash_melody_timer = new Thread() {
+				public void run() {
+					try {
+						sleep(4000);
 
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} finally {
-					Intent openStartingPoint = new Intent(
-							"com.shumz.scalc.SCALCACTIVITY");
-					startActivity(openStartingPoint);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} finally {
+						Intent openStartingPoint = new Intent(
+								"com.shumz.scalc.SCALCACTIVITY");
+						startActivity(openStartingPoint);
+					}
 				}
-			}
 
-		};
+			};
 
-		splash_melody_timer.start();
-
+			splash_melody_timer.start();
+		}
 	}
 
 	@Override
