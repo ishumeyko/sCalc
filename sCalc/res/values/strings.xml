@@ -10,6 +10,7 @@
 
     <string name="scalc_header_str">CITIZEN &#169;</string>
     <string name="scalc_result_str">0.0</string>
+    <!--  -->
     <string name="scalc_digit_0_button_str">0</string>
     <string name="scalc_digit_1_button_str">1</string>
     <string name="scalc_digit_2_button_str">2</string>
@@ -20,13 +21,27 @@
     <string name="scalc_digit_7_button_str">7</string>
     <string name="scalc_digit_8_button_str">8</string>
     <string name="scalc_digit_9_button_str">9</string>
+    <!--  -->
     <string name="scalc_operator_add_button_str">+</string>
     <string name="scalc_operator_sub_button_str">-</string>
     <string name="scalc_operator_mul_button_str">*</string>
     <string name="scalc_operator_div_button_str">/</string>
+    <!--  -->
     <string name="scalc_float_point_button_str">.</string>
     <string name="scalc_operator_equal_button_str">=</string>
     <string name="scalc_clear_button_str">CE</string>
-
     <string name="scalc_off_button_str">Off</string>
+
+    <!-- resources for debugger -->
+
+    <string name="scalc_logger_str_operand_one">null</string>
+    <string name="scalc_logger_str_operand_two">null</string>
+    <string name="scalc_logger_str_result">null</string>
+    <string name="scalc_logger_str_stack_array">null</string>
+    <!--  -->
+    <string name="scalc_logger_str_tv_operand_one">operand_one:</string>
+    <string name="scalc_logger_str_tv_operand_two">operand_two:</string>
+    <string name="scalc_logger_str_tv_result">result:</string>
+    <string name="scalc_logger_str_tv_stack_array">stack:</string>
+
 </resources>

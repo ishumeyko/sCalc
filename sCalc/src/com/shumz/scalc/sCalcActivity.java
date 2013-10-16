@@ -2,6 +2,8 @@ package com.shumz.scalc;
 
 import java.util.LinkedList;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +29,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			Button_Equal;
 
 	String resultString = "0";
-	String operandString = "0";
 
 	char funcKey = 'Z';
 
@@ -41,11 +42,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	Boolean isFuncKeyPressed = false;
 	Boolean isDigitPressed = false;
 
-	Boolean MemoryTrigger = false;
-
-	Boolean memoryCell_1 = false;
-	Boolean memoryCell_2 = false;
-
 	Boolean isBittonAddPressed = false;
 	Boolean SubIsPressed = false;
 	Boolean MulIsPressed = false;
@@ -58,13 +54,17 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	Boolean wasFuncKeyPressed = false;
 
-	String[] stack = { null, null, null, null, null, null, null };
-
 	LinkedList<String> llStack = new LinkedList<String>();
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		if (android.os.Build.VERSION.SDK_INT > 10) {
+			ActionBar ABAr = getActionBar();
+			ABAr.hide();
+		}
 		setContentView(R.layout.activity_scalc_activity);
 
 		Log.i(APP, "Activity is created...");
@@ -219,11 +219,11 @@ public class sCalcActivity extends Activity implements OnClickListener {
 					resultString = formatInputString(resultString);
 					tvResultString.setText(resultString);
 					operand_1 = Float.valueOf(resultString);
-					
+
 					llStack.removeFirst();
 					llStack.addFirst(resultString);
 				} else if (llStack.size() >= 2) {
-					
+
 				}
 
 				tvResultString.setText(resultString);
