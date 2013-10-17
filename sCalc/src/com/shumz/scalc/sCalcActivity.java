@@ -2,8 +2,6 @@ package com.shumz.scalc;
 
 import java.util.LinkedList;
 
-
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -58,17 +56,20 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 	LinkedList<String> llStack = new LinkedList<String>();
 
-	
-	
-	//Debug Logger Code BEGIN
+	// Debug Logger Code BEGIN
 	boolean isDebugLoggerEnabled = true;
 
-	
-	
+	TextView tvOperandOneLogger;// = (TextView)
+								// findViewById(R.id.tv_operand_one_logger);
+	TextView tvOperandTwoLogger; // = (TextView)
+									// findViewById(R.id.tv_operand_two_logger);
+	TextView tvOperandResultLogger; // = (TextView)
+									// findViewById(R.id.tv_result_logger);
+	TextView tvOperandStackLogger; // = (TextView)
+									// findViewById(R.id.tv_stack_sequence);
 
-	//Debug Logger Code END
-	
-	
+	// Debug Logger Code END
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				ABar.hide();
 			}
 			setContentView(R.layout.activity_scalc_logger);
+
+			initializeDebugLoggerTVs();
 		} else {
 			setContentView(R.layout.activity_scalc);
 		}
@@ -132,6 +135,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 				llStack.clear();
 
+				// Debug Logger Code BEGIN
+
+				if (isDebugLoggerEnabled) {
+					getDebugLoggerInfo();
+				}
+				// Debug Logger Code END
+
 			}
 		});
 
@@ -175,11 +185,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				resultString = formatInputString(resultString);
-				tvResultString.setText(resultString);
+				evaluate("+");
 
-				funcKey = 'A';
-				isFuncKeyPressed = true;
 			}
 		});
 
@@ -188,8 +195,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				funcKey = 'S';
-				isFuncKeyPressed = true;
+				evaluate("-");
 			}
 		});
 
@@ -198,8 +204,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				funcKey = 'M';
-				isFuncKeyPressed = true;
+				evaluate("*");
 			}
 		});
 
@@ -208,8 +213,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				funcKey = 'D';
-				isFuncKeyPressed = true;
+				evaluate("/");
 			}
 		});
 
@@ -220,35 +224,68 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated method stub
 
 				if (llStack.isEmpty()) {
-
 					resultString = formatInputString(resultString);
+					operand_1 = Float.valueOf(resultString);
 
 					tvResultString.setText(resultString);
 
-					operand_1 = Float.valueOf(resultString);
+					llStack.add(resultString);
 
-					llStack.addFirst(resultString);
+					getDebugLoggerInfo();
+
 				} else if (llStack.size() == 1) {
 					resultString = formatInputString(resultString);
-					tvResultString.setText(resultString);
 					operand_1 = Float.valueOf(resultString);
 
-					llStack.removeFirst();
-					llStack.addFirst(resultString);
-				} else if (llStack.size() >= 2) {
+					llStack.clear();
+
+					tvResultString.setText(resultString);
+
+					llStack.add(resultString);
+
+					getDebugLoggerInfo();
 
 				}
 
-				tvResultString.setText(resultString);
+				isEqualPressed = true;
 			}
 		});
 
 		Log.i(APP, "initialized Functional keys...");
 	}
 
-	protected void evaluate() {
+	protected void evaluate(String fun_key) {
 		// TODO Auto-generated method stub
 
+		if (llStack.isEmpty()) {
+			resultString = formatInputString(resultString);
+
+			operand_1 = Float.valueOf(resultString);
+
+			llStack.add(resultString);
+			llStack.add(fun_key);
+
+			tvResultString.setText(resultString);
+
+			getDebugLoggerInfo();
+		} else if (llStack.size() == 1) {
+			resultString = formatInputString(resultString);
+			tvResultString.setText(resultString);
+
+			llStack.add(fun_key);
+
+			getDebugLoggerInfo();
+
+		} else if (llStack.size() == 2) {
+
+			llStack.removeLast();
+
+			llStack.add(fun_key);
+			
+			getDebugLoggerInfo();
+		}
+
+		isFuncKeyPressed = true;
 	}
 
 	private void initializeDigits() {
@@ -282,6 +319,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 
 		if (isFuncKeyPressed) {
+			resultString = "0";
+		}
+
+		if (isEqualPressed) {
 			resultString = "0";
 		}
 
@@ -329,7 +370,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		}
 
 		isDigitPressed = true;
-		// isFuncKeyPressed = false;
+		isFuncKeyPressed = false;
 		isEqualPressed = false;
 
 		resultString = getInputFromDigitalKeyboard(chr, resultString);
@@ -403,6 +444,41 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		return inner_str;
 
 	}
+
+	// Debug Logger Code BEGIN
+	private void initializeDebugLoggerTVs() {
+		tvOperandOneLogger = (TextView) findViewById(R.id.tv_operand_one_logger);
+		tvOperandTwoLogger = (TextView) findViewById(R.id.tv_operand_two_logger);
+		tvOperandResultLogger = (TextView) findViewById(R.id.tv_result_logger);
+		tvOperandStackLogger = (TextView) findViewById(R.id.tv_stack_sequence);
+
+		Log.i(APP, "DebugLogger TextViews initialized...");
+	}
+
+	private void getDebugLoggerInfo() {
+		tvOperandOneLogger.setText(String.valueOf(operand_1));
+		tvOperandTwoLogger.setText(String.valueOf(operand_2));
+		tvOperandResultLogger.setText(String.valueOf(result));
+
+		if (llStack.isEmpty()) {
+
+			tvOperandStackLogger
+					.setText("llStack.size() is: " + llStack.size());
+		} else {
+
+			String str_llStackInfo = "llStack.size() is: " + llStack.size()
+					+ " => ";
+
+			for (int i = 0; i < llStack.size(); i++) {
+				str_llStackInfo += llStack.get(i) + "|";
+			}
+
+			tvOperandStackLogger.setText(str_llStackInfo);
+		}
+
+		Log.i(APP, "getDebugLoggerInfo() called...");
+	}
+	// Debug Logger Code END
 
 }
 
