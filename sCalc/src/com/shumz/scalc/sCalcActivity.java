@@ -168,126 +168,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Log.i(APP, "initialized Panel keys...");
 	}
 
-	private void initializeFuncKeys() {
-
-		Button_Add = (Button) findViewById(R.id.button_Add);
-		Button_Sub = (Button) findViewById(R.id.button_Sub);
-		Button_Mul = (Button) findViewById(R.id.button_Mul);
-		Button_Div = (Button) findViewById(R.id.button_Div);
-		Button_Floater = (Button) findViewById(R.id.button_Dot);
-		Button_Equal = (Button) findViewById(R.id.button_Eql);
-
-		Button_Floater.setOnClickListener(this);
-
-		Button_Add.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				evaluate("+");
-
-			}
-		});
-
-		Button_Sub.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				evaluate("-");
-			}
-		});
-
-		Button_Mul.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				evaluate("*");
-			}
-		});
-
-		Button_Div.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				evaluate("/");
-			}
-		});
-
-		Button_Equal.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				if (llStack.isEmpty()) {
-					resultString = formatInputString(resultString);
-					operand_1 = Float.valueOf(resultString);
-
-					tvResultString.setText(resultString);
-
-					llStack.add(resultString);
-
-					getDebugLoggerInfo();
-
-				} else if (llStack.size() == 1) {
-					resultString = formatInputString(resultString);
-					operand_1 = Float.valueOf(resultString);
-
-					llStack.clear();
-
-					tvResultString.setText(resultString);
-
-					llStack.add(resultString);
-
-					getDebugLoggerInfo();
-
-				}
-
-				isEqualPressed = true;
-			}
-		});
-
-		Log.i(APP, "initialized Functional keys...");
-	}
-
-	protected void evaluate(String fun_key) {
-		// TODO Auto-generated method stub
-
-		if (llStack.isEmpty()) {
-			resultString = formatInputString(resultString);
-
-			operand_1 = Float.valueOf(resultString);
-
-			llStack.add(resultString);
-			llStack.add(fun_key);
-
-			tvResultString.setText(resultString);
-
-			getDebugLoggerInfo();
-		} else if (llStack.size() == 1) {
-			resultString = formatInputString(resultString);
-			tvResultString.setText(resultString);
-
-			llStack.add(fun_key);
-
-			getDebugLoggerInfo();
-
-		} else if (llStack.size() == 2) {
-
-			llStack.removeLast();
-
-			llStack.add(fun_key);
-			
-			getDebugLoggerInfo();
-		}
-
-		isFuncKeyPressed = true;
-	}
-
 	private void initializeDigits() {
 
 		Button_1 = (Button) findViewById(R.id.button_1);
@@ -313,6 +193,153 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Button_0.setOnClickListener(this);
 
 		Log.i(APP, "initialized Digital keys...");
+	}
+
+	private void initializeFuncKeys() {
+
+		Button_Add = (Button) findViewById(R.id.button_Add);
+		Button_Sub = (Button) findViewById(R.id.button_Sub);
+		Button_Mul = (Button) findViewById(R.id.button_Mul);
+		Button_Div = (Button) findViewById(R.id.button_Div);
+		Button_Floater = (Button) findViewById(R.id.button_Dot);
+		Button_Equal = (Button) findViewById(R.id.button_Eql);
+
+		Button_Floater.setOnClickListener(this);
+
+		Button_Add.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				onFunctionalKeyPressEvaluation("+");
+
+			}
+		});
+
+		Button_Sub.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onFunctionalKeyPressEvaluation("-");
+			}
+		});
+
+		Button_Mul.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onFunctionalKeyPressEvaluation("*");
+			}
+		});
+
+		Button_Div.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onFunctionalKeyPressEvaluation("/");
+
+			}
+		});
+
+		Button_Equal.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				onFunctionalKeyPressEvaluation("=");
+
+			}
+		});
+
+		Log.i(APP, "initialized Functional keys...");
+	}
+
+	protected void onFunctionalKeyPressEvaluation(String fun_key) {
+		// TODO Auto-generated method stub
+
+		if (llStack.isEmpty()) { // if llStack is empty at all
+
+			if (fun_key.equals("=")) {
+
+				isEqualPressed = true;
+
+				resultString = formatInputString(resultString);
+				tvResultString.setText(resultString);
+
+				// llStack.clear();
+				llStack.addLast(resultString);
+
+				getDebugLoggerInfo();
+
+			} else {
+
+				isFuncKeyPressed = true;
+
+				resultString = formatInputString(resultString);
+				tvResultString.setText(resultString);
+
+				llStack.addLast(resultString);
+				llStack.addLast(fun_key);
+
+				getDebugLoggerInfo();
+
+			}
+
+		} else { // llStack is not empty
+
+			if (fun_key.equals("=")) { // clearing stack for now
+
+				isEqualPressed = true;
+
+				resultString = formatInputString(resultString);
+				tvResultString.setText(resultString);
+
+				llStack.clear();
+				llStack.addLast(resultString);
+
+				getDebugLoggerInfo();
+
+			} else { // if fun_key is not "="
+
+				if ((llStack.getLast().equals("+"))
+						|| (llStack.getLast().equals("-"))
+						|| (llStack.getLast().equals("*"))
+						|| (llStack.getLast().equals("/"))) {
+
+					isFuncKeyPressed = true;
+
+					resultString = formatInputString(resultString);
+					tvResultString.setText(resultString);
+
+					llStack.removeLast();
+					llStack.addLast(fun_key);
+
+					getDebugLoggerInfo();
+
+				} else {
+
+					isFuncKeyPressed = true;
+
+					resultString = formatInputString(resultString);
+					tvResultString.setText(resultString);
+
+					// llStack.removeLast();
+
+					llStack.addLast(resultString);
+					llStack.addLast(fun_key);
+
+					getDebugLoggerInfo();
+
+				}
+
+			}
+		}
+
 	}
 
 	@Override
@@ -470,7 +497,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 					+ " => ";
 
 			for (int i = 0; i < llStack.size(); i++) {
-				str_llStackInfo += llStack.get(i) + "|";
+				str_llStackInfo += llStack.get(i); // + "|";
 			}
 
 			tvOperandStackLogger.setText(str_llStackInfo);
