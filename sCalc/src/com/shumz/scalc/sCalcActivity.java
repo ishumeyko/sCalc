@@ -42,17 +42,17 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	Boolean isFuncKeyPressed = false;
 	Boolean isDigitPressed = false;
 
-	Boolean isBittonAddPressed = false;
-	Boolean SubIsPressed = false;
-	Boolean MulIsPressed = false;
-	Boolean DivIsPressed = false;
+	// Boolean isBittonAddPressed = false;
+	// Boolean SubIsPressed = false;
+	// Boolean MulIsPressed = false;
+	// Boolean DivIsPressed = false;
 
-	Boolean AddWasPressed = false;
-	Boolean SubWasPressed = false;
-	Boolean MulWasPressed = false;
-	Boolean DivWasPressed = false;
+	// Boolean AddWasPressed = false;
+	// Boolean SubWasPressed = false;
+	// Boolean MulWasPressed = false;
+	// Boolean DivWasPressed = false;
 
-	Boolean wasFuncKeyPressed = false;
+	// Boolean wasFuncKeyPressed = false;
 
 	LinkedList<String> llStack = new LinkedList<String>();
 
@@ -117,17 +117,17 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				isFuncKeyPressed = false;
 				isDigitPressed = false;
 
-				wasFuncKeyPressed = false;
+				// wasFuncKeyPressed = false;
 
-				isBittonAddPressed = false;
-				SubIsPressed = false;
-				MulIsPressed = false;
-				DivIsPressed = false;
+				// isBittonAddPressed = false;
+				// SubIsPressed = false;
+				// MulIsPressed = false;
+				// DivIsPressed = false;
 
-				AddWasPressed = false;
-				SubWasPressed = false;
-				MulWasPressed = false;
-				DivWasPressed = false;
+				// AddWasPressed = false;
+				// SubWasPressed = false;
+				// MulWasPressed = false;
+				// DivWasPressed = false;
 
 				funcKey = 'Z';
 
@@ -266,19 +266,16 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			if (fun_key.equals("=")) {
 
-				isEqualPressed = true;
-
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
 
 				// llStack.clear();
 				llStack.addLast(resultString);
 
+				isEqualPressed = true;
 				getDebugLoggerInfo();
 
 			} else {
-
-				isFuncKeyPressed = true;
 
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
@@ -286,6 +283,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				llStack.addLast(resultString);
 				llStack.addLast(fun_key);
 
+				isFuncKeyPressed = true;
 				getDebugLoggerInfo();
 
 			}
@@ -294,51 +292,51 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 			if (fun_key.equals("=")) { // clearing stack for now
 
-				isEqualPressed = true;
-
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
 
 				llStack.clear();
 				llStack.addLast(resultString);
 
+				isFuncKeyPressed = true;
+				isEqualPressed = true;
 				getDebugLoggerInfo();
 
-			} else { // if fun_key is not "="
+			} else {
 
-				if ((llStack.getLast().equals("+"))
+				if (((llStack.getLast().equals("+"))
 						|| (llStack.getLast().equals("-"))
-						|| (llStack.getLast().equals("*"))
-						|| (llStack.getLast().equals("/"))) {
+						|| (llStack.getLast().equals("*")) || (llStack
+							.getLast().equals("/")))) {
 
-					isFuncKeyPressed = true;
+					if (isFuncKeyPressed) {
 
-					resultString = formatInputString(resultString);
-					tvResultString.setText(resultString);
+						llStack.removeLast();
+						llStack.addLast(fun_key);
 
-					llStack.removeLast();
-					llStack.addLast(fun_key);
+						// resultString = formatInputString(resultString);
+						// tvResultString.setText(resultString);
 
-					getDebugLoggerInfo();
+						getDebugLoggerInfo();
 
-				} else {
+					} else {
 
-					isFuncKeyPressed = true;
+						resultString = formatInputString(resultString);
+						tvResultString.setText(resultString);
 
-					resultString = formatInputString(resultString);
-					tvResultString.setText(resultString);
+						llStack.addLast(resultString);
+						llStack.addLast(fun_key);
 
-					// llStack.removeLast();
+						isFuncKeyPressed = true;
+						
+						getDebugLoggerInfo();
 
-					llStack.addLast(resultString);
-					llStack.addLast(fun_key);
-
-					getDebugLoggerInfo();
+					}
 
 				}
 
 			}
-		}
+		} // llStack is not empty
 
 	}
 
