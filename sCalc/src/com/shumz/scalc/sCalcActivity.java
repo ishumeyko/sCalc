@@ -269,10 +269,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
 
-				// llStack.clear();
 				llStack.addLast(resultString);
 
 				isEqualPressed = true;
+
 				getDebugLoggerInfo();
 
 			} else {
@@ -298,7 +298,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				llStack.clear();
 				llStack.addLast(resultString);
 
-				isFuncKeyPressed = true;
 				isEqualPressed = true;
 				getDebugLoggerInfo();
 
@@ -314,8 +313,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 						llStack.removeLast();
 						llStack.addLast(fun_key);
 
-						// resultString = formatInputString(resultString);
-						// tvResultString.setText(resultString);
+						resultString = formatInputString(resultString);
 
 						getDebugLoggerInfo();
 
@@ -328,11 +326,20 @@ public class sCalcActivity extends Activity implements OnClickListener {
 						llStack.addLast(fun_key);
 
 						isFuncKeyPressed = true;
-						
+
 						getDebugLoggerInfo();
 
 					}
 
+				} else {
+					resultString = formatInputString(resultString);
+					tvResultString.setText(resultString);
+
+					llStack.addLast(fun_key);
+
+					isFuncKeyPressed = true;
+
+					getDebugLoggerInfo();
 				}
 
 			}
@@ -502,6 +509,15 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		}
 
 		Log.i(APP, "getDebugLoggerInfo() called...");
+
+		Log.i(APP,
+				"__________________________________________________________________");
+		Log.i(APP, "isFunkeyIsPressed = " + isFuncKeyPressed);
+		Log.i(APP, "isEqualPressed = " + isEqualPressed);
+		Log.i(APP, "isDigitPressed = " + isDigitPressed);
+		Log.i(APP,
+				"__________________________________________________________________");
+
 	}
 	// Debug Logger Code END
 
