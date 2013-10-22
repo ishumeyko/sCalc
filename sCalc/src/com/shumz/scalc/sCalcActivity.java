@@ -308,12 +308,10 @@ public class sCalcActivity extends Activity implements OnClickListener {
 						|| (llStack.getLast().equals("*")) || (llStack
 							.getLast().equals("/")))) {
 
-					if (isFuncKeyPressed) {
+				if (isFuncKeyPressed) {
 
 						llStack.removeLast();
 						llStack.addLast(fun_key);
-
-						resultString = formatInputString(resultString);
 
 						getDebugLoggerInfo();
 
@@ -350,12 +348,9 @@ public class sCalcActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 
-		if (isFuncKeyPressed) {
+		if (isFuncKeyPressed || isEqualPressed) {
 			resultString = "0";
-		}
-
-		if (isEqualPressed) {
-			resultString = "0";
+			isDotPressed = false;
 		}
 
 		char chr = 'Z';
@@ -432,6 +427,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		} else {
 			isDotPressed = false;
 		}
+		
 		return str;
 	}
 
@@ -473,6 +469,13 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			} // End of: if (chr_inner != 'Z')
 
 		} // End of: if (resultString.length() < 13)
+
+		// if (inner_str.contains(".")) {
+		// isDotPressed = true;
+		// } else {
+		// isDotPressed = false;
+		// }
+
 		return inner_str;
 
 	}
@@ -515,6 +518,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		Log.i(APP, "isFunkeyIsPressed = " + isFuncKeyPressed);
 		Log.i(APP, "isEqualPressed = " + isEqualPressed);
 		Log.i(APP, "isDigitPressed = " + isDigitPressed);
+		Log.i(APP, "___________");
+		Log.i(APP, "isDotPressed = " + isDotPressed);
 		Log.i(APP,
 				"__________________________________________________________________");
 
