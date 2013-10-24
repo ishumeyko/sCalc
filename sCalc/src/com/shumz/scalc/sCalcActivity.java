@@ -211,9 +211,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
 				onFunctionalKeyPressEvaluation("+");
-
 			}
 		});
 
@@ -241,7 +239,6 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				onFunctionalKeyPressEvaluation("/");
-
 			}
 		});
 
@@ -250,9 +247,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
 				onFunctionalKeyPressEvaluation("=");
-
 			}
 		});
 
@@ -264,29 +259,21 @@ public class sCalcActivity extends Activity implements OnClickListener {
 
 		if (llStack.isEmpty()) { // if llStack is empty at all
 
+			resultString = formatInputString(resultString);
+			tvResultString.setText(resultString);
+
+			operand_1 = Float.valueOf(resultString);
+
+			llStack.addLast(resultString);
+
 			if (fun_key.equals("=")) {
-
-				resultString = formatInputString(resultString);
-				tvResultString.setText(resultString);
-
-				llStack.addLast(resultString);
-
 				isEqualPressed = true;
-
-				getDebugLoggerInfo();
-
 			} else {
-
-				resultString = formatInputString(resultString);
-				tvResultString.setText(resultString);
-
-				llStack.addLast(resultString);
 				llStack.addLast(fun_key);
-
 				isFuncKeyPressed = true;
-				getDebugLoggerInfo();
-
 			}
+
+			getDebugLoggerInfo();
 
 		} else { // llStack is not empty
 
@@ -295,8 +282,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				resultString = formatInputString(resultString);
 				tvResultString.setText(resultString);
 
-				llStack.clear();
-				llStack.addLast(resultString);
+				 llStack.clear();
+				 llStack.addLast(resultString);
 
 				isEqualPressed = true;
 				getDebugLoggerInfo();
@@ -308,7 +295,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 						|| (llStack.getLast().equals("*")) || (llStack
 							.getLast().equals("/")))) {
 
-				if (isFuncKeyPressed) {
+					if (isFuncKeyPressed) {
 
 						llStack.removeLast();
 						llStack.addLast(fun_key);
@@ -340,7 +327,8 @@ public class sCalcActivity extends Activity implements OnClickListener {
 					getDebugLoggerInfo();
 				}
 
-			}
+			} // if (llStack.size() > 3)
+
 		} // llStack is not empty
 
 	}
@@ -427,7 +415,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 		} else {
 			isDotPressed = false;
 		}
-		
+
 		return str;
 	}
 
@@ -524,6 +512,7 @@ public class sCalcActivity extends Activity implements OnClickListener {
 				"__________________________________________________________________");
 
 	}
+
 	// Debug Logger Code END
 
 }
